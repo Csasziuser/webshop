@@ -20,7 +20,7 @@ class ProductController extends Controller
         } 
 
         if( $request->has('size') && !empty($request->size) ){
-            $query->where('size',$request->size);
+            $query->where('size','=',$request->size);
         }
 
         $products = $query->get();
