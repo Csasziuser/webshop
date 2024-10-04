@@ -26,7 +26,8 @@ Route::get('new-product', function ()
 Route::post('new-product', [ProductController::class,'store']);
 
 Route::get('/admin_product', [ProductController::class,'adminIndex'])->name('admin_termekek');
-Route::delete('/admin_product/delete/{id}', [ProductController::class,'destroy'])->name('delete_product');
+// Route::delete('/admin_product/delete/{id}', [ProductController::class,'destroy'])->name('delete_product');
+Route::any('/admin_product/delete/{id}', [ProductController::class,'destroy'])->name('delete_product');
 
 
 Route::get('/dashboard', function () {

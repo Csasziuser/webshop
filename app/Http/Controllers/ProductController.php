@@ -95,7 +95,13 @@ class ProductController extends Controller
             'product_type_id' => $request->product_type_id,
         ]);
 
-        return redirect()->route('products.index')->with('success','Sikeres adatrögzítés');
+        $routing = $request->product_type_id;
+        if($routing == 1){
+            return redirect()->route('clothes.index')->with('success','Sikeres adatrögzítés');
+        }
+        else{
+            return redirect()->route('products.index')->with('success','Sikeres adatrögzítés');
+        }
     }
 
     public function update(Request $request, $id){
@@ -106,13 +112,13 @@ class ProductController extends Controller
         ]);
 
         if($request->quantity > $product->stock){
-            return redirect()->route('products.index')->with('error','Nincs elég termék készleten');
+            return redirect()->back()->with('error','Nincs elég termék készleten');
         }
 
         $product->stock -= $request->quantity;
         $product->save();
 
-        return redirect()->route('products.index')->with('success','Sikeres vásárlás');
+        return redirect()->back()->with('success','Sikeres vásárlás');
     }
 
     public function adminIndex(){
