@@ -1,0 +1,23 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
+
+class ProductTypeSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        DB::table('product_types')->insert([
+            'type' => 'clothes'
+        ]);
+        DB::table('product_types')->insert([
+            'type' => 'shoes'
+        ]);
+    }
+}

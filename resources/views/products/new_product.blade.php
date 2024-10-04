@@ -31,6 +31,13 @@
         <label for="price">Érték</label>
         <input type="number" name="price" id="price" required><br><br>
 
+        <label for="type">Típus</label>
+        <select name="product_type_id" id="product_type_id">
+            @foreach ($types as $type)
+                <option value="{{$type->id}}">{{$type->type}}</option>
+            @endforeach
+        </select>
+
         <button type="submit">Mentés</button>
     </form>
 </body>

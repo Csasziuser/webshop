@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Product_type;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,10 +14,15 @@ Route::get('/', function () {
 //     return view('list_product', ['termekek' => $termekek]);
 // });
 
-Route::get('/products', [ProductController::class,'index'])->name('products.index');
+Route::get('/products/shoes', [ProductController::class,'index'])->name('products.index');
+Route::get('/products/clothes', [ProductController::class,'clothes_index'])->name('clothes.index');
 Route::put('products/update/{id}',[ProductController::class, 'update'])->name('update_stock');
 
-Route::get('new-product', function () { return view('products.new_product');});
+Route::get('new-product', function () 
+{ 
+    $types = Product_type::all();
+    return view('products.new_product',['types' => $types]);
+});
 Route::post('new-product', [ProductController::class,'store']);
 
 Route::get('/admin_product', [ProductController::class,'adminIndex'])->name('admin_termekek');

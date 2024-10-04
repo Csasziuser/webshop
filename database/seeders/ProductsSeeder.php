@@ -20,6 +20,7 @@ class ProductsSeeder extends Seeder
             'size' => 39, 
             'stock' => 20, 
             'price' => 15000,
+            'product_type_id' => 2,
         ]);
 
         DB::table('products')->insert([
@@ -28,7 +29,8 @@ class ProductsSeeder extends Seeder
             'color' => 'black', 
             'size' => 41, 
             'stock' => 20, 
-            'price' => 40000, 
+            'price' => 40000,
+            'product_type_id' => 2, 
         ]);
 
         DB::table('products')->insert([
@@ -38,6 +40,7 @@ class ProductsSeeder extends Seeder
             'size' => 42, 
             'stock' => 20, 
             'price' => 60000,
+            'product_type_id' => 2,
         ]);
     }
 }

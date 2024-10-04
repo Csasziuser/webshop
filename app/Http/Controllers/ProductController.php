@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Product_type;
 use Illuminate\View\View;
 
 
@@ -13,6 +14,10 @@ class ProductController extends Controller
     {
         $query = Product::query();
         $query->where('stock', '>', '0');
+
+        // $query->where('product_type_id', '=', '2');
+        $type = Product_type::where('type', 'like','shoes')->first();
+        $query->where('product_type_id', $type->id);
 
         if( $request->has('brand') && !empty($request->brand) )
         {
@@ -25,13 +30,35 @@ class ProductController extends Controller
 
         $products = $query->get();
 
-        return view('products.list_product', compact('products'));
+        return view('products.shoes.list_product', compact('products'));
 
         // return view('products.list_product',[
         //     'products' => Product::all()->where('stock','>','0')]);
+    }
+    public function clothes_index(Request $request): View
+    {
+        $query = Product::query();
+        $query->where('stock', '>', '0');
 
+        // $query->where('product_type_id', '=', '2');
+        $type = Product_type::where('type', 'like','clothes')->first();
+        $query->where('product_type_id', $type->id);
 
-        
+        if( $request->has('brand') && !empty($request->brand) )
+        {
+            $query->where('brand', 'like' , '%'. $request->brand .'%');
+        } 
+
+        if( $request->has('size') && !empty($request->size) ){
+            $query->where('size','=',$request->size);
+        }
+
+        $products = $query->get();
+
+        return view('products.clothes.list_product', compact('products'));
+
+        // return view('products.list_product',[
+        //     'products' => Product::all()->where('stock','>','0')]);
     }
     
     public function store(Request $request){
@@ -65,6 +92,7 @@ class ProductController extends Controller
             'size'=> $request->size,
             'stock' => $request->stock,
             'price' => $request->price,
+            'product_type_id' => $request->product_type_id,
         ]);
 
         return redirect()->route('products.index')->with('success','Sikeres adatrögzítés');
