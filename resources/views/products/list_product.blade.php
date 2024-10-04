@@ -12,9 +12,11 @@
     <form method="GET" action="{{route('products.index')}}">
         <label for="brand">Brand</label>
         <input type="text" name="brand" id="brand" placeholder="Márka" value="{{request()->brand}}"><br>
-        <label for="brand">size</label>
+        <label for="size">size</label>
         <input type="number" name="size" id="size" placeholder="Méret" value="{{request()->size}}"><br>
         
+        <button>Szűrés</button>
+
     </form>
 
     <br>
