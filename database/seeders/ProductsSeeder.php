@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,8 +19,7 @@ class ProductsSeeder extends Seeder
             'color' => 'black', 
             'size' => 39, 
             'stock' => 20, 
-            'price' => 15000, 
-            'product_type_id' => 2,
+            'price' => 15000,
         ]);
 
         DB::table('products')->insert([
@@ -29,7 +29,6 @@ class ProductsSeeder extends Seeder
             'size' => 41, 
             'stock' => 20, 
             'price' => 40000, 
-            'product_type_id' => 2,
         ]);
 
         DB::table('products')->insert([
@@ -38,8 +37,7 @@ class ProductsSeeder extends Seeder
             'color' => 'black', 
             'size' => 42, 
             'stock' => 20, 
-            'price' => 60000, 
-            'product_type_id' => 2,
+            'price' => 60000,
         ]);
     }
 }
