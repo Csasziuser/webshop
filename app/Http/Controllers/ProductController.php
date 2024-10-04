@@ -9,10 +9,29 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('products.list_product',[
-            'products' => Product::all()->where('stock','>','0')]);
+        $query = Product::query();
+        $query->where('stock', '>', '0');
+
+        if( $request->has('brand') && !empty($request->brand) )
+        {
+            $query->where('brand', 'like' , '%'. $request->brand .'%');
+        } 
+
+        if( $request->has('size') && !empty($request->size) ){
+            $query->where('size',$request->size);
+        }
+
+        $products = $query->get();
+
+        return view('products.list_product', compact('products'));
+
+        // return view('products.list_product',[
+        //     'products' => Product::all()->where('stock','>','0')]);
+
+
+        
     }
     
     public function store(Request $request){
